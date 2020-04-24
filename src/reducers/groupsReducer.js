@@ -40,6 +40,8 @@ function selected(state=null, action) {
   switch (action.type)   {
     case GROUP_ACTIONS.SELECT:
       return action.id
+    case GROUP_ACTIONS.REMOVE:
+      return action.id === state ? "" : state;
     default:
       return state;
   }

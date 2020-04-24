@@ -9,6 +9,7 @@ function TrashButton({onClick}) {
       className="trash-btn"
       onClick={(e) => {
         e.preventDefault();
+        e.stopPropagation();
         ref.current.blur();
         if (onClick) {
           onClick(e);
