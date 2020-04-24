@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  transition: background 500ms ease-in-out, color 1000ms ease-in-out;
+}
+
+.app {
+  display: flex;
+}
+
+.group-list {
+  width: 10em;
+  height: 100vh;
+  background-color: var(--group-list-bg);
+  /* border-right: thin solid var(--group-border-color); */
+  position: relative;
+}
+
+.todo-list {
+  flex: 1;
+  padding: 0.25em;
+}
+
+.group-item {
+  border-bottom: thin solid var(--group-border-color);
+  height: 2.5em;
+  padding: 0.1em 0.1em 1em 0.1em;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out, border-right 0.3s ease-in-out;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+}
+
+.group-item:hover {
+  background-color: var(--group-item-hover-bg);
+}
+
+.group-item:focus {
+  border-right: solid thick var(--group-item-selected-color);
+}
+
+.group-item .group-item-header {
+  font-size: 18px;
+  display: block;
+}
+
+.new-group-button {
+  border-top: thin solid var(--group-border-color);
+  height: 3em;
+  text-align: center;
+  width: 100%;
+  color: var(--icon-color);
+  position: absolute;
+  bottom: 0px;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+.new-group-button:hover {
+  color: var(--icon-hover-color);
+}
+
+.card {
+  background-color: var(--bg);
+  border-top-style: solid;
+  border-radius: 0.5em;
+  border-width: 2px;
+  border-top-color: var(--card-border-color);
+  border-top-width: medium;
+  padding: 0.5em 1em;
+  background-color: var(--card-bg);
+}
+
+.trash-btn {
+  background-color: transparent;
+  border-style: none;
+  border-radius: 0.25em;
+  transition: color 0.3s ease-in-out;
+  color: var(--icon-color);
+}
+.trash-btn:hover {
+  color: var(--red);
+}
+
+.edit-btn {
+  background-color: transparent;
+  border-style: none;
+  border-radius: 0.25em;
+  transition: color 0.3s ease-in-out;
+  color: var(--icon-color);
+}
+.edit-btn:hover {
+  color: var(--icon-hover-color);
+}
+
+/* Themes */
+:root {
+  --gray0: #fcfcfc;
+  --gray1: #f8f8f8;
+  --gray2: #eaeaef;
+  --gray3: #6c7983;
+  --gray4: #454e56;
+  --gray5: #2a2a2c;
+  --gray6: #18181a;
+  --green: #33ffbd;
+  --purple: #b842ff;
+  --yellow: #ffb842;
+  --red: #ff42c3;
+  --blue: #42c3ff;
+}
+
+.light {
+  --bg: var(--gray0);
+  --text: var(--gray3);
+  --card-border-color: var(--green);
+  --card-bg: var(--gray1);
+  --group-list-bg: var(--gray1);
+  --group-border-color: var(--gray2);
+  --group-item-hover-bg: var(--gray2);
+  --group-item-selected-color: var(--green);
+  --icon-color: var(--gray3);
+  --icon-hover-color: var(--green);
+}
+
+.dark {
+  --bg: var(--gray5);
+  --text: var(--gray2);
+  --card-border-color: var(--purple);
+  --card-bg: var(--gray6);
+  --group-list-bg: var(--gray6);
+  --group-border-color: var(--gray5);
+  --group-item-hover-bg: var(--gray5);
+  --group-item-selected-color: var(--purple);
+  --icon-color: var(--gray2);
+  --icon-hover-color: var(--purple);
+}
