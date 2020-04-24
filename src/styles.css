@@ -7,6 +7,9 @@ body {
   transition: background 500ms ease-in-out, color 1000ms ease-in-out;
 }
 
+button:focus {outline:0;}
+
+
 .app {
   display: flex;
 }
@@ -19,9 +22,10 @@ body {
   position: relative;
 }
 
-.todo-list {
+.task-list {
   flex: 1;
   padding: 0.25em;
+  position: relative;
 }
 
 .group-item {
@@ -39,7 +43,7 @@ body {
   background-color: var(--group-item-hover-bg);
 }
 
-.group-item:focus {
+.group-item-selected {
   border-right: solid thick var(--group-item-selected-color);
 }
 
@@ -63,15 +67,17 @@ body {
   color: var(--icon-hover-color);
 }
 
-.card {
+.task-item {
   background-color: var(--bg);
   border-top-style: solid;
   border-radius: 0.5em;
   border-width: 2px;
   border-top-color: var(--card-border-color);
   border-top-width: medium;
-  padding: 0.5em 1em;
+  padding: 0.25em;
   background-color: var(--card-bg);
+  margin-top: 0.5em;
+  display: flex;
 }
 
 .trash-btn {
@@ -93,6 +99,21 @@ body {
   color: var(--icon-color);
 }
 .edit-btn:hover {
+  color: var(--icon-hover-color);
+}
+
+.new-task-btn {
+  position: absolute;
+  right: 0;
+  bottom: 1em;
+  background-color: transparent;
+  border-style: none;
+  border-radius: 0.25em;
+  transition: color 0.3s ease-in-out;
+  color: var(--icon-color);
+}
+
+.new-task-btn:hover {
   color: var(--icon-hover-color);
 }
 

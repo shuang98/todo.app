@@ -1,14 +1,19 @@
 import React from "react";
 import TrashButton from "./TrashButton";
 import EditButton from "./EditButton";
+import { useSelector, useDispatch } from "react-redux";
+import { selectGroup, removeGroup } from "../actions";
 
-function GroupItem({ name }) {
+function GroupItem({ id, selected=false }) {
+  const group = useSelector(state => state.groups.byId[id]);
+  const dispatch = useDispatch();
   return (
     <a
       href="/"
-      className="group-item"
+      className={selected ? "group-item group-item-selected" : "group-item"}
       onClick={(e) => {
         e.preventDefault();
+        dispatch(selectGroup(id));
       }}
     >
       <div style={{ display: "flex" }}>
@@ -16,10 +21,12 @@ function GroupItem({ name }) {
           <EditButton />
         </div>
         <div style={{ marginLeft: "auto" }}>
-          <TrashButton />
+          <TrashButton onClick={e => {
+            dispatch(removeGroup(id));
+          }} />
         </div>
       </div>
-      <strong className="group-item-header">{name}</strong>
+      <strong className="group-item-header">{group.name}</strong>
     </a>
   );
 }

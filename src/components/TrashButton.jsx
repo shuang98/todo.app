@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function TrashButton() {
+function TrashButton({onClick}) {
+  const ref = useRef();
   return (
     <button
+      ref={ref}
       className="trash-btn"
       onClick={(e) => {
-        console.log("button");
+        e.preventDefault();
+        ref.current.blur();
+        if (onClick) {
+          onClick(e);
+        }
       }}
     >
       <FontAwesomeIcon icon="trash" />
