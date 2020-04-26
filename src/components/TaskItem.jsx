@@ -6,6 +6,7 @@ import { removeTask } from "../actions";
 function TaskItem({ id }) {
   const task = useSelector((state) => state.tasks.byId[id]);
   const dispatch = useDispatch();
+  if (!task) {return null};
   return (
     <div className="task-item">
       <div style={{flex:1, padding: "0.5em"}}>

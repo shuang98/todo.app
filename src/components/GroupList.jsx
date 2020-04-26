@@ -12,8 +12,8 @@ function GroupList() {
         <GroupItem
           key={gid}
           id={gid}
-          selected={selectedGroupId === gid}
-        />
+          selected={selectedGroupId == gid}
+        ></GroupItem>
       ))}
       <NewGroupButton></NewGroupButton>
     </div>
