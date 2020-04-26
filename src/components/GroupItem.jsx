@@ -26,7 +26,7 @@ function GroupItem({ id, selected=false }) {
           }} />
         </div>
       </div>
-      <strong className="group-item-header">{group.name}</strong>
+      <strong className="group-item-header">{group ? group.name : " "}</strong>
     </a>
   );
 }

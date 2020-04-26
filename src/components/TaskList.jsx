@@ -9,7 +9,7 @@ function TaskList() {
   const taskList = useSelector((state) => state.tasks.byGroupId[selectedGroup]);
   return (
     <div className="task-list">
-      <TransitionGroup childFactory={child =>React.cloneElement(child)}>
+      <TransitionGroup>
         {taskList ? taskList.map((tid) => {
               return (
                 <CSSTransition key={tid} timeout={300} classNames={"fade"}>

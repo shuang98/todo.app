@@ -6,16 +6,17 @@ import { removeTask } from "../actions";
 function TaskItem({ id }) {
   const task = useSelector((state) => state.tasks.byId[id]);
   const dispatch = useDispatch();
-  if (!task) {return null};
   return (
     <div className="task-item">
-      <div style={{flex:1, padding: "0.5em"}}>
-        {task.description} {task.id}
+      <div style={{ flex: 1, padding: "0.5em" }}>
+        {task ? task.description + " " + task.id : " "}
       </div>
-      <div style={{width: "1em", paddingRight: "0.25em"}}>
+      <div style={{ width: "1em", paddingRight: "0.25em" }}>
         <TrashButton
           onClick={(e) => {
-            dispatch(removeTask(id, task.groupId));
+            if (task) {
+              dispatch(removeTask(id, task.groupId));
+            }
           }}
         />
       </div>
