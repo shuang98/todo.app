@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-function EditButton() {
+function EditButton({ onClick }) {
+  const ref = useRef();
   return (
     <button
+      ref={ref}
       className="edit-btn"
       onClick={(e) => {
-        console.log("button");
+        e.preventDefault();
+        e.stopPropagation();
+        ref.current.blur();
+        if (onClick) {
+          onClick(e);
+        }
       }}
     >
       <FontAwesomeIcon icon="pen" />

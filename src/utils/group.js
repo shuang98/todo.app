@@ -1,7 +1,8 @@
 import { generateGroupId } from "./generateId";
 
 const defaultOptions = {
-  name: "New Group"
+  name: "New Group",
+  editingOnCreate: true
 }
 
 export function Group(options) {

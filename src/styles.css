@@ -52,6 +52,11 @@ button:focus {outline:0;}
   display: block;
 }
 
+.group-item input {
+  font-size:18px;
+  width: 80%;
+}
+
 .new-group-button {
   border-top: thin solid var(--group-border-color);
   height: 3em;
@@ -78,6 +83,7 @@ button:focus {outline:0;}
   background-color: var(--card-bg);
   margin-top: 0.5em;
   display: flex;
+  min-height: 3em;
 }
 
 .trash-btn {

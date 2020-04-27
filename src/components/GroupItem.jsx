@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import TrashButton from "./TrashButton";
 import EditButton from "./EditButton";
 import { useSelector, useDispatch } from "react-redux";
-import { selectGroup, removeGroup } from "../actions";
+import { selectGroup, removeGroup, editGroup } from "../actions";
 
-function GroupItem({ id, selected=false }) {
-  const group = useSelector(state => state.groups.byId[id]);
+function GroupItem({ id, selected = false }) {
+  const group = useSelector((state) => state.groups.byId[id]);
+  const [editing, setEditing] = useState(group && group.editingOnCreate);
+  const [editFieldValue, setEditFieldValue] = useState(group ? group.name : "");
+  const inputRef = useRef();
+  useEffect(() => {
+    if (editing) {
+      inputRef.current.focus();
+    }
+  });
   const dispatch = useDispatch();
+  const onEditFinish = () => {
+    if (editFieldValue) {
+      dispatch(
+        editGroup({ name: editFieldValue, editingOnCreate: false }, group.id)
+      );
+    }
+    setEditing(false);
+  };
   return (
     <a
       href="/"
@@ -18,15 +34,42 @@ function GroupItem({ id, selected=false }) {
     >
       <div style={{ display: "flex" }}>
         <div style={{ textAlign: "left" }}>
-          <EditButton />
+          <EditButton
+            onClick={(e) => {
+              setEditing(!editing);
+            }}
+          />
         </div>
         <div style={{ marginLeft: "auto" }}>
-          <TrashButton onClick={e => {
-            dispatch(removeGroup(id));
-          }} />
+          <TrashButton
+            onClick={(e) => {
+              dispatch(removeGroup(id));
+            }}
+          />
         </div>
       </div>
-      <strong className="group-item-header">{group ? group.name : " "}</strong>
+      {editing ? (
+        <input
+          ref={inputRef}
+          onBlur={onEditFinish}
+          onChange={(e) => {
+            setEditFieldValue(e.target.value);
+          }}
+          onFocus={(e) => {
+            e.target.select();
+          }}
+          onKeyDown={(e) => {
+            if (e.keyCode === 13) {
+              onEditFinish();
+            }
+          }}
+          value={editFieldValue}
+        ></input>
+      ) : (
+        <strong className="group-item-header">
+          {group ? group.name : " "}
+        </strong>
+      )}
     </a>
   );
 }
