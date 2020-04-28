@@ -2,7 +2,8 @@ import {generateTaskId} from "./generateId";
 
 const defaultOptions = {
   description: "new task",
-  completed: false
+  completed: false,
+  initialized: false
 }
 
 export function Task(groupId, options={}) {

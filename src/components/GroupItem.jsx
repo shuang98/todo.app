@@ -6,7 +6,7 @@ import { selectGroup, removeGroup, editGroup } from "../actions";
 
 function GroupItem({ id, selected = false }) {
   const group = useSelector((state) => state.groups.byId[id]);
-  const [editing, setEditing] = useState(group && group.editingOnCreate);
+  const [editing, setEditing] = useState(group && !group.initialized);
   const [editFieldValue, setEditFieldValue] = useState(group ? group.name : "");
   const inputRef = useRef();
   useEffect(() => {
@@ -18,7 +18,7 @@ function GroupItem({ id, selected = false }) {
   const onEditFinish = () => {
     if (editFieldValue) {
       dispatch(
-        editGroup({ name: editFieldValue, editingOnCreate: false }, group.id)
+        editGroup({ name: editFieldValue, initialized: true }, group.id)
       );
     }
     setEditing(false);
