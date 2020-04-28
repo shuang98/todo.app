@@ -1,4 +1,4 @@
-import { generateGroupId } from "./generateId";
+import { v4 as uuidv4 } from 'uuid';
 
 const defaultOptions = {
   name: "New Group",
@@ -7,6 +7,6 @@ const defaultOptions = {
 
 export function Group(options) {
   const group = {...defaultOptions, ...options};
-  group.id = generateGroupId();
+  group.id = uuidv4();
   return group;
 }
