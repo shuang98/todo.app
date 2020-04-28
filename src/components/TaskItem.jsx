@@ -5,13 +5,28 @@ import { removeTask, editTask } from "../actions";
 import TextareaAutosize from "react-textarea-autosize";
 import { useHotkeys } from "react-hotkeys-hook";
 
+function CheckBox({changeHandler, initialState=false}) {
+  const [checked, setChecked] = useState(initialState);
+  return (
+    <label class="checkmark-container">
+      <input type="checkbox" checked={checked} onChange={(e) => {
+        setChecked(e.target.checked);
+        changeHandler(e);
+        }}/>
+      <span class="checkmark"></span>
+    </label>
+  );
+}
+
 function TaskTextField({ task, setEditing }) {
   const [descField, setDescField] = useState(task ? task.description : "");
   const ref = useRef();
   const dispatch = useDispatch();
   const onFinishEditing = () => {
     if (descField) {
-      dispatch(editTask({ description: descField, initialized: true }, task.id));
+      dispatch(
+        editTask({ description: descField, initialized: true }, task.id)
+      );
     }
     setEditing(false);
   };
@@ -57,7 +72,7 @@ function TaskItem({ id }) {
           {task ? task.description : " "}
         </div>
       )}
-      <div style={{ width: "1em", paddingRight: "0.25em" }}>
+      <div style={{textAlign:"center", width: "2em", paddingRight: "0.25em" }}>
         <TrashButton
           onClick={(e) => {
             if (task) {
@@ -65,6 +80,9 @@ function TaskItem({ id }) {
             }
           }}
         />
+        <CheckBox initialState={task && task.completed} changeHandler={e => {
+          dispatch(editTask({completed: e.target.checked}, id))
+        }}/>
       </div>
     </div>
   );
