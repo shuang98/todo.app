@@ -8,12 +8,12 @@ import { useHotkeys } from "react-hotkeys-hook";
 function CheckBox({changeHandler, initialState=false}) {
   const [checked, setChecked] = useState(initialState);
   return (
-    <label class="checkmark-container">
+    <label className="checkmark-container">
       <input type="checkbox" checked={checked} onChange={(e) => {
         setChecked(e.target.checked);
         changeHandler(e);
         }}/>
-      <span class="checkmark"></span>
+      <span className="checkmark"></span>
     </label>
   );
 }
@@ -31,7 +31,7 @@ function TaskTextField({ task, setEditing }) {
     setEditing(false);
   };
   useHotkeys(
-    "command+enter",
+    "shift+enter",
     () => {
       ref.current.blur();
     },
@@ -54,12 +54,13 @@ function TaskTextField({ task, setEditing }) {
   );
 }
 
-function TaskItem({ id }) {
+const TaskItem = React.forwardRef((props, ref) => {
+  const id = props.id;
   const task = useSelector((state) => state.tasks.byId[id]);
   const [editing, setEditing] = useState(task && !task.initialized);
   const dispatch = useDispatch();
   return (
-    <div className="task-item">
+    <div className="task-item" ref={ref}>
       {editing ? (
         <TaskTextField task={task} setEditing={setEditing} />
       ) : (
@@ -86,6 +87,6 @@ function TaskItem({ id }) {
       </div>
     </div>
   );
-}
+})
 
 export default TaskItem;

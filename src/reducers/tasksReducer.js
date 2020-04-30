@@ -55,6 +55,15 @@ function byGroupId(state = {}, action) {
         ...state,
         [action.payload.groupId]: state[action.payload.groupId].filter(tid => tid !== action.payload.id)
       }
+    case TASK_ACTIONS.REORDER:
+      const {groupId, sourceIndex, destinationIndex} = action.payload
+      let list = state[groupId];
+      let newList = [...list.slice(0, sourceIndex), ...list.slice(sourceIndex + 1)];
+      newList = [...newList.slice(0, destinationIndex), list[sourceIndex], ...newList.slice(destinationIndex)];
+      return {
+        ...state,
+        [groupId]: newList
+      }
     default:
       return state;
   }
