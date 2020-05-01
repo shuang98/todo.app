@@ -44,4 +44,8 @@ export function selectGroup(id) {
   return {type: GROUP_ACTIONS.SELECT, id};
 }
 
+export const TOGGLE_DARK = "TOGGLE_DARK";
 
+export function toggleDark() {
+  return {type: TOGGLE_DARK};
+}

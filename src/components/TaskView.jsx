@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import TaskList from "./TaskList";
+import NewTaskButton from "./NewTaskButton";
+import ToggleDarkButton from "./ToggleDarkButton";
 
 function TaskView() {
   const selectedGroup = useSelector(state => state.groups.selected);
@@ -14,7 +16,8 @@ function TaskView() {
       <TaskList tasks={complete}></TaskList>
       </div>
     ) : (<div></div>)}
-    
+    <NewTaskButton></NewTaskButton>
+    <ToggleDarkButton></ToggleDarkButton>
   </div>)
 }
 

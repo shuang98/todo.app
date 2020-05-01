@@ -4,10 +4,10 @@ import './styles.css';
 import * as serviceWorker from './serviceWorker';
 import TodoApp from './components/TodoApp';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFolderPlus, faTrash, faPen, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faFolderPlus, faTrash, faPen, faPlusCircle, faAdjust } from '@fortawesome/free-solid-svg-icons'
 import store from "./store";
 import { Provider } from "react-redux";
-library.add(faFolderPlus, faTrash, faPen, faPlusCircle);
+library.add(faFolderPlus, faTrash, faPen, faPlusCircle, faAdjust);
 
 ReactDOM.render(
   // <React.StrictMode>

@@ -1,6 +1,5 @@
 import React from "react";
 import TaskItem from "./TaskItem";
-import NewTaskButton from "./NewTaskButton";
 import { useSelector, useDispatch } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -79,7 +78,6 @@ const InnerTaskList = React.forwardRef((props, ref) => {
           : null}
         {props.children}
       </TransitionGroup>
-      <NewTaskButton></NewTaskButton>
     </div>
   );
 });
