@@ -3,8 +3,8 @@ export const TASK_ACTIONS = {
   ADD: 'TASK_ADD',
   REMOVE: 'TASK_REMOVE',
   EDIT: 'TASK_EDIT',
-  REORDER: 'TASK_REORDER'
-
+  REORDER: 'TASK_REORDER',
+  TOGGLE: 'TASK_TOGGLE'
 }
 export function addTask(task) {
   assert(task.id, "task missing id");
@@ -19,6 +19,9 @@ export function editTask(fields, id) {
 }
 export function reorderTask(groupId, sourceIndex, destinationIndex) {
   return {type: TASK_ACTIONS.REORDER, payload: {groupId, sourceIndex, destinationIndex}}
+}
+export function toggleTask(id, groupId) {
+  return {type: TASK_ACTIONS.TOGGLE, payload: {id, groupId}};
 }
 
 export const GROUP_ACTIONS = {

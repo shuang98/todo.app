@@ -23,11 +23,17 @@ button:focus {outline:0;}
   flex-shrink: 0;
 }
 
-.task-list {
+.task-view {
   flex: 1;
 
   padding: 0.25em;
   position: relative;
+}
+
+.line-header {
+  text-align: center;
+  border-bottom: medium solid var(--text);
+  margin-top: 2em;
 }
 
 .group-item {
@@ -113,6 +119,10 @@ button:focus {outline:0;}
 
 .task-item textarea:focus {
   box-shadow: 0px 0px 3px 1px var(--group-item-selected-color);
+}
+
+.task-item.completed {
+  border-top-color: var(--text);
 }
 
 .trash-btn {

@@ -1,18 +1,22 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TrashButton from "./TrashButton";
-import { removeTask, editTask } from "../actions";
+import { removeTask, editTask, toggleTask } from "../actions";
 import TextareaAutosize from "react-textarea-autosize";
 import { useHotkeys } from "react-hotkeys-hook";
 
-function CheckBox({changeHandler, initialState=false}) {
+function CheckBox({ changeHandler, initialState = false }) {
   const [checked, setChecked] = useState(initialState);
   return (
     <label className="checkmark-container">
-      <input type="checkbox" checked={checked} onChange={(e) => {
-        setChecked(e.target.checked);
-        changeHandler(e);
-        }}/>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(e) => {
+          setChecked(e.target.checked);
+          changeHandler(e);
+        }}
+      />
       <span className="checkmark"></span>
     </label>
   );
@@ -54,13 +58,12 @@ function TaskTextField({ task, setEditing }) {
   );
 }
 
-const TaskItem = React.forwardRef((props, ref) => {
-  const id = props.id;
+function TaskItem({ id }) {
   const task = useSelector((state) => state.tasks.byId[id]);
   const [editing, setEditing] = useState(task && !task.initialized);
   const dispatch = useDispatch();
   return (
-    <div className="task-item" ref={ref}>
+    <div className={"task-item" + (task.completed ? " completed" : "")}>
       {editing ? (
         <TaskTextField task={task} setEditing={setEditing} />
       ) : (
@@ -73,7 +76,9 @@ const TaskItem = React.forwardRef((props, ref) => {
           {task ? task.description : " "}
         </div>
       )}
-      <div style={{textAlign:"center", width: "2em", paddingRight: "0.25em" }}>
+      <div
+        style={{ textAlign: "center", width: "2em", paddingRight: "0.25em" }}
+      >
         <TrashButton
           onClick={(e) => {
             if (task) {
@@ -81,12 +86,15 @@ const TaskItem = React.forwardRef((props, ref) => {
             }
           }}
         />
-        <CheckBox initialState={task && task.completed} changeHandler={e => {
-          dispatch(editTask({completed: e.target.checked}, id))
-        }}/>
+        <CheckBox
+          initialState={task && task.completed}
+          changeHandler={(e) => {
+            dispatch(toggleTask(id, task.groupId));
+          }}
+        />
       </div>
     </div>
   );
-})
+}
 
 export default TaskItem;

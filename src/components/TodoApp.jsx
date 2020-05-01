@@ -1,10 +1,10 @@
 import React from "react";
-import TaskList from "./TaskList";
 import GroupList from "./GroupList"
+import TaskView from "./TaskView";
 function TodoApp() {
   return (<div className="app">
     <GroupList></GroupList>
-    <TaskList></TaskList>
+    <TaskView></TaskView>
   </div>)
 }
 
