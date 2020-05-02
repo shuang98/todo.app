@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { addTask } from "../actions";
+import { addTask, setAnimation } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Task } from "../utils/task";
 function NewTaskButton() {
@@ -16,6 +16,7 @@ function NewTaskButton() {
         ref.current.blur();
         if (selectedGroupId) {
           const task = Task(selectedGroupId);
+          dispatch(setAnimation("fade", 300))
           dispatch(addTask(task));
         }
       }}

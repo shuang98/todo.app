@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { addGroup, selectGroup } from "../actions";
+import { addGroup, selectGroup, setAnimation } from "../actions";
 import { Group } from "../utils/group";
 
 function NewGroupButton() {
@@ -9,6 +9,7 @@ function NewGroupButton() {
   const onClick = e => {
     e.preventDefault();
     const group = Group();
+    dispatch(setAnimation("", 0));
     dispatch(addGroup(group));
     dispatch(selectGroup(group.id));
   }

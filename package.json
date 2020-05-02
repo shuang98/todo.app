@@ -25,7 +25,7 @@
   },
   "scripts": {
     "react-start": "craco start",
-    "react-build": "react-scripts build",
+    "react-build": "craco build",
     "react-test": "react-scripts test",
     "react-eject": "react-scripts eject",
     "start": "concurrently \"BROWSER=none npm run react-start\" \"wait-on http://localhost:3000 && electron .\"",

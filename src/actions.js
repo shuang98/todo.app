@@ -44,8 +44,16 @@ export function selectGroup(id) {
   return {type: GROUP_ACTIONS.SELECT, id};
 }
 
-export const TOGGLE_DARK = "TOGGLE_DARK";
+
+export const UI_ACTIONS = {
+  TOGGLE_DARK: "TOGGLE_DARK",
+  SET_ANIMATION: "SET_ANIMATION",
+}
 
 export function toggleDark() {
-  return {type: TOGGLE_DARK};
+  return {type: UI_ACTIONS.TOGGLE_DARK};
+}
+
+export function setAnimation(name, timeout) {
+  return {type: UI_ACTIONS.SET_ANIMATION, payload: {name, timeout}};
 }

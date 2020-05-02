@@ -10,7 +10,7 @@ function TaskView() {
   const complete = useSelector(state => state.tasks.byGroupIdCompleted[selectedGroup]);
   return (<div className="task-view">
     <TaskList tasks={incomplete} draggable={true}></TaskList>
-    {complete.length ? (
+    {complete && complete.length ? (
       <div>
       <div className="line-header">Completed Tasks</div>
       <TaskList tasks={complete}></TaskList>

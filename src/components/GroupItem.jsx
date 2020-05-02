@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import TrashButton from "./TrashButton";
 import EditButton from "./EditButton";
 import { useSelector, useDispatch } from "react-redux";
-import { selectGroup, removeGroup, editGroup } from "../actions";
+import { selectGroup, removeGroup, editGroup, setAnimation } from "../actions";
 
 function GroupItem({ id, selected = false }) {
   const group = useSelector((state) => state.groups.byId[id]);
@@ -29,6 +29,7 @@ function GroupItem({ id, selected = false }) {
       className={selected ? "group-item group-item-selected" : "group-item"}
       onClick={(e) => {
         e.preventDefault();
+        dispatch(setAnimation("", 0));
         dispatch(selectGroup(id));
       }}
     >

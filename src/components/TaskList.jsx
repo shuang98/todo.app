@@ -42,6 +42,10 @@ function TaskList({ tasks, draggable = false }) {
 
 const InnerTaskList = React.forwardRef((props, ref) => {
   const taskList = props.tasks;
+  let animation = useSelector((state) => state.ui.animation);
+  if (!animation) {
+    animation = { name: "", timeout: 0 };
+  }
   const draggableTask = (tid, index) => (
     <Draggable key={tid} draggableId={tid} index={index}>
       {(provided) => (
@@ -60,15 +64,24 @@ const InnerTaskList = React.forwardRef((props, ref) => {
   );
   return (
     <div className="task-list" ref={ref}>
-      <TransitionGroup>
+      <TransitionGroup
+        childFactory={(child) => {
+          if (animation.name) {
+            return React.cloneElement(child, {
+              classNames: animation.name,
+              timeout: animation.timeout,
+            });
+          }
+          return React.cloneElement(child, {
+            enter: false,
+            exit: false
+          });
+        }}
+      >
         {taskList
           ? taskList.map((tid, index) => {
               return (
-                <CSSTransition
-                  key={"css" + tid}
-                  timeout={300}
-                  classNames={"fade"}
-                >
+                <CSSTransition key={"css" + tid}>
                   {props.draggable
                     ? draggableTask(tid, index)
                     : task(tid, index)}

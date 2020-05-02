@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import TrashButton from "./TrashButton";
-import { removeTask, editTask, toggleTask } from "../actions";
+import { removeTask, editTask, toggleTask, setAnimation } from "../actions";
 import TextareaAutosize from "react-textarea-autosize";
 import { useHotkeys } from "react-hotkeys-hook";
 
@@ -63,7 +63,7 @@ function TaskItem({ id }) {
   const [editing, setEditing] = useState(task && !task.initialized);
   const dispatch = useDispatch();
   return (
-    <div className={"task-item" + (task.completed ? " completed" : "")}>
+    <div className={"task-item" + (task && task.completed ? " completed" : "")}>
       {editing ? (
         <TaskTextField task={task} setEditing={setEditing} />
       ) : (
@@ -82,6 +82,7 @@ function TaskItem({ id }) {
         <TrashButton
           onClick={(e) => {
             if (task) {
+              dispatch(setAnimation("fade", 300))
               dispatch(removeTask(id, task.groupId));
             }
           }}

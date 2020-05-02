@@ -1,10 +1,18 @@
-import { TOGGLE_DARK } from "../actions";
+import { UI_ACTIONS } from "../actions";
 function ui(state = {}, action) {
   switch (action.type) {
-    case TOGGLE_DARK:
+    case UI_ACTIONS.TOGGLE_DARK:
       return {
         ...state,
         darkMode: !state.darkMode
+      }
+    case UI_ACTIONS.SET_ANIMATION:
+      return {
+        ...state,
+        animation: {
+          name: action.payload.name,
+          timeout: action.payload.timeout
+        }
       }
     default:
       return state;
