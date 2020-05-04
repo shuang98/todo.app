@@ -155,15 +155,22 @@ button:focus {
   color: var(--highlight-color);
 }
 
-.toggle-dark-btn {
+.left-toolbar {
   position: absolute;
-  right: 0;
-  bottom: 5em;
+  left: 0.5em;
+  bottom: 1em;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.toggle-dark-btn {
   background-color: transparent;
   border-style: none;
   border-radius: 0.25em;
   transition: color 0.3s ease-in-out;
   color: var(--icon-color);
+  margin-top: 0.5em;
 }
 
 .toggle-dark-btn:hover {
@@ -171,14 +178,12 @@ button:focus {
 }
 
 .new-task-btn {
-  position: absolute;
-  right: 0;
-  bottom: 1em;
   background-color: transparent;
   border-style: none;
   border-radius: 0.25em;
   transition: color 0.3s ease-in-out;
   color: var(--icon-color);
+  margin-top: 0.5em;
 }
 
 .new-task-btn:hover {

@@ -24,10 +24,12 @@ function TaskView() {
         ) : (
           <div></div>
         )}
-        <div style={{height: "5em"}}></div>
+        <div style={{ height: "6em" }}></div>
       </div>
-      <NewTaskButton></NewTaskButton>
-      <ToggleDarkButton></ToggleDarkButton>
+      <div className="left-toolbar">
+        <NewTaskButton></NewTaskButton>
+        <ToggleDarkButton></ToggleDarkButton>
+      </div>
     </div>
   );
 }
