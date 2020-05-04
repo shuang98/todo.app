@@ -34,15 +34,11 @@ function TaskTextField({ task, setEditing }) {
     }
     setEditing(false);
   };
-  useHotkeys(
-    "shift+enter",
-    () => {
+  useHotkeys("shift+enter", (event, handler) => {
+    if (event.target.tagName == "TEXTAREA") {
       ref.current.blur();
-    },
-    {
-      enableOnTags: ["TEXTAREA", "INPUT"],
     }
-  );
+  });
 
   return (
     <TextareaAutosize
@@ -82,7 +78,7 @@ function TaskItem({ id }) {
         <TrashButton
           onClick={(e) => {
             if (task) {
-              dispatch(setAnimation("fade", 300))
+              dispatch(setAnimation("fade", 300));
               dispatch(removeTask(id, task.groupId));
             }
           }}

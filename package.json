@@ -50,9 +50,9 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "electron": "^8.2.3",
-    "electron-builder": "^22.5.1",
+    "concurrently": "^5.2.0",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.6.0",
     "electron-redux-devtools": "^0.3.4",
     "wait-on": "^4.0.2"
   },
