@@ -69,19 +69,21 @@ const InnerTaskList = React.forwardRef((props, ref) => {
           if (animation.name) {
             return React.cloneElement(child, {
               classNames: animation.name,
-              timeout: animation.timeout,
+              timeout: animation.timeout ? animation.timeout : 0,
             });
           }
           return React.cloneElement(child, {
             enter: false,
-            exit: false
+            exit: false,
+            classNames: "",
+            timeout: 0
           });
         }}
       >
         {taskList
           ? taskList.map((tid, index) => {
               return (
-                <CSSTransition key={"css" + tid}>
+                <CSSTransition key={"css" + tid} timeout={0}>
                   {props.draggable
                     ? draggableTask(tid, index)
                     : task(tid, index)}

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 button:focus {
@@ -14,20 +15,27 @@ button:focus {
   font-family: Arial, sans-serif;
   font-size: 16px;
 }
-
-.group-list {
+.group-view {
   width: 10em;
-  height: 100vh;
-  background-color: var(--group-list-bg);
   position: relative;
   flex-shrink: 0;
+  background-color: var(--group-list-bg);
+}
+.group-list {
+  width: 10em;
+  height: calc(100vh - 3em);
+  overflow-y: scroll;
 }
 
 .task-view {
   flex: 1;
-
   padding: 0.25em;
   position: relative;
+}
+
+.task-view-content {
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .line-header {
@@ -79,10 +87,10 @@ button:focus {
   text-align: center;
   width: 100%;
   color: var(--icon-color);
-  position: absolute;
   bottom: 0px;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
+  background-color: var(--group-list-bg);
 }
 .new-group-button:hover {
   color: var(--highlight-color);

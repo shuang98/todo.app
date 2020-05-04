@@ -8,18 +8,16 @@ function GroupList() {
   const allGroups = useSelector((state) => state.groups.all);
   const selectedGroupId = useSelector((state) => state.groups.selected);
   return (
-    <div className="group-list">
-      <TransitionGroup>
-      {allGroups.map((gid) => (
-        <CSSTransition key={gid} timeout={300} classNames={"fade"}>
-        <GroupItem
-          key={gid}
-          id={gid}
-          selected={selectedGroupId == gid}
-        />
-        </CSSTransition>
-      ))}
-      </TransitionGroup>
+    <div className="group-view">
+      <div className="group-list">
+        <TransitionGroup>
+          {allGroups.map((gid) => (
+            <CSSTransition key={gid} timeout={300} classNames={"fade"}>
+              <GroupItem key={gid} id={gid} selected={selectedGroupId == gid} />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
+      </div>
       <NewGroupButton></NewGroupButton>
     </div>
   );
