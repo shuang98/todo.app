@@ -86,6 +86,7 @@ function TaskItem({ id }) {
         <CheckBox
           initialState={task && task.completed}
           changeHandler={(e) => {
+            dispatch(setAnimation("fade", 300));
             dispatch(toggleTask(id, task.groupId));
           }}
         />
