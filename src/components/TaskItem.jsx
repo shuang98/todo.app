@@ -67,7 +67,7 @@ function TaskItem({ id }) {
           onClick={(e) => {
             setEditing(true);
           }}
-          style={{ whiteSpace: "pre-wrap", flex: 1, padding: "0.5em" }}
+          style={{  wordWrap: "normal", flex: 1, padding: "0.5em" }}
         >
           {task ? task.description : " "}
         </div>

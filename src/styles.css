@@ -108,8 +108,8 @@ button:focus {
   margin-top: 0.5em;
   display: flex;
   min-height: 3em;
-  word-break: break-all;
-  white-space: pre-wrap;
+  /* word-break: break-all; */
+  /* white-space: pre-wrap; */
 }
 
 .task-item textarea {
