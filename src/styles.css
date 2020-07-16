@@ -109,7 +109,7 @@ button:focus {
   display: flex;
   min-height: 3em;
   /* word-break: break-all; */
-  /* white-space: pre-wrap; */
+  white-space: pre-line;
 }
 
 .task-item textarea {
